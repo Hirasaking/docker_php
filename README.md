@@ -1,3 +1,7 @@
+# WEBサーバ別にフォルダ分け
+apache
+nginx
+
 # Windows環境用 Vagrantfile
 
 Vagrant.configure("2") do |config|
