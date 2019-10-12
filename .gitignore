@@ -1,2 +1,4 @@
 # Laravelのソースフォルダは管理対象外
 laravel-app/
+apache/docker/mysql
+apache/docker/phpmyadmin

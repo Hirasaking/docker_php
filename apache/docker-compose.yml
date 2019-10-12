@@ -1,0 +1,39 @@
+#https://qiita.com/naente_dev/items/d259ea84c172deeff7d8
+version: '3'
+
+services:
+  php:
+    image: php:7.2-apache
+    volumes:
+      - ./php.ini:/usr/local/etc/php/php.ini
+      - ./docker/html:/var/www/html
+    ports:
+      - 8080:80
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: sample
+      MYSQL_USER: user
+      MYSQL_PASSWORD:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=user
+      - PMA_PASSWORD=password
+    links:
+      - mysql
+    ports:
+     - 3000:80
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
+volumes:
+  mysql-data:
